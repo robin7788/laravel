@@ -1,8 +1,5 @@
 <?php
 
-use App\Task;
-use App\Http\Requests\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,16 +11,19 @@ use App\Http\Requests\Request;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', function(){
-    return view('task.tasks');
-});
-Route::post('/task', function(Request $request){
-    return "Hello";
-});
-Route::delete('/task/{task}', function(Task $task){
-    return "Hello";
-});
+Route::get('/task', [
+    'as' => 'task',
+    'uses' => 'userController@showProfile'
+]);
+Route::post('/user', [
+    'as' => 'task',
+    'uses' => 'userController@profileCheck'
+]);
+Route::delete('/task/{task}', [
+    'as' => 'taskDelete',
+    'uses' => 'userController@deleteProfile'
+]);
